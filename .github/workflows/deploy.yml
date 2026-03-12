@@ -22,7 +22,7 @@ jobs:
             set -e
 
             # Pull latest code
-            cd /opt/airquality
+            cd /home/exouser/air-quality-report
             git pull origin main
 
             # Install/update Python dependencies
@@ -42,4 +42,4 @@ jobs:
             sudo cp Caddyfile /etc/caddy/Caddyfile
             sudo systemctl reload caddy
 
-            echo "Deploy complete"
+            echo "✅ Deploy complete"
