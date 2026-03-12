@@ -5,9 +5,9 @@ After=network.target
 [Service]
 Type=simple
 User=exouser
-WorkingDirectory=/opt/airquality
-EnvironmentFile=/opt/airquality/.env
-ExecStart=/opt/airquality/venv/bin/streamlit run dashboard.py \
+WorkingDirectory=/home/exouser/air-quality-report
+EnvironmentFile=/home/exouser/air-quality-report/.env
+ExecStart=/home/exouser/air-quality-report/venv/bin/streamlit run dashboard.py \
     --server.port=8501 \
     --server.address=127.0.0.1 \
     --server.headless=true

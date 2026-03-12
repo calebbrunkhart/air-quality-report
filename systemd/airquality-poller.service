@@ -5,8 +5,8 @@ After=network.target
 [Service]
 Type=oneshot
 User=exouser
-WorkingDirectory=/opt/airquality
-EnvironmentFile=/opt/airquality/.env
-ExecStart=/opt/airquality/venv/bin/python poller.py
+WorkingDirectory=/home/exouser/air-quality-report
+EnvironmentFile=/home/exouser/air-quality-report/.env
+ExecStart=/home/exouser/air-quality-report/venv/bin/python poller.py
 StandardOutput=journal
 StandardError=journal
