@@ -1,0 +1,9 @@
+.env
+*.db
+__pycache__/
+*.pyc
+.DS_Store
+venv/
+logs/
+setup_vm.sh
+
