@@ -34,7 +34,7 @@ def aqi_label(aqi):
     return "Hazardous"
 
 # ── Header ────────────────────────────────────────────────────────────────────
-st.title("🌬️ Missoula, MT — Air Quality Monitor")
+st.title("Missoula, MT — Air Quality Monitor")
 st.caption(f"Data sourced from AirNow (EPA) · Last refreshed: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}")
 
 st.divider()
@@ -73,7 +73,7 @@ else:
 st.divider()
 
 # ── Historical chart ──────────────────────────────────────────────────────────
-st.subheader("📈 AQI History (last 30 days)")
+st.subheader("AQI History")
 
 # Pull 30 days of data so weekly averages and unhealthy day counts are meaningful
 history = get_history(hours=720)
@@ -135,7 +135,7 @@ else:
 st.divider()
 
 # ── Weekly averages ───────────────────────────────────────────────────────────
-st.subheader("📅 Weekly AQI Averages")
+st.subheader("Weekly AQI Averages")
 
 weekly_history = get_history(hours=720)
 if weekly_history:
@@ -179,7 +179,7 @@ else:
 st.divider()
 
 # ── Days above Unhealthy ──────────────────────────────────────────────────────
-st.subheader("🚨 Days Above 'Unhealthy' (AQI > 150)")
+st.subheader("Days Above 'Unhealthy' (AQI > 150)")
 
 if weekly_history:
     udf = pd.DataFrame(weekly_history)
