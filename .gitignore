@@ -5,5 +5,5 @@ __pycache__/
 .DS_Store
 venv/
 logs/
-setup_vm.sh
+
 

@@ -1,0 +1,12 @@
+[Unit]
+Description=Air Quality Poller (single run)
+After=network.target
+
+[Service]
+Type=oneshot
+User=exouser
+WorkingDirectory=/opt/airquality
+EnvironmentFile=/opt/airquality/.env
+ExecStart=/opt/airquality/venv/bin/python poller.py
+StandardOutput=journal
+StandardError=journal

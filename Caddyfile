@@ -1,0 +1,6 @@
+# Replace YOUR_IP with your actual Jetstream2 public IP
+# e.g. airquality.149.165.x.x.nip.io
+
+airquality.{$SERVER_IP}.nip.io {
+    reverse_proxy localhost:8501
+}

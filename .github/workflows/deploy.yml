@@ -1,0 +1,45 @@
+name: Deploy to Jetstream2
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to VM via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host:     ${{ secrets.VM_HOST }}
+          username: ${{ secrets.USERNAME }}
+          key:      ${{ secrets.VM_SSH_KEY }}
+          script: |
+            set -e
+
+            # Pull latest code
+            cd /opt/airquality
+            git pull origin main
+
+            # Install/update Python dependencies
+            ./venv/bin/pip install -r requirements.txt --quiet
+
+            # Copy systemd units if changed and reload
+            sudo cp systemd/airquality.service        /etc/systemd/system/
+            sudo cp systemd/airquality-poller.service /etc/systemd/system/
+            sudo cp systemd/airquality-poller.timer   /etc/systemd/system/
+            sudo systemctl daemon-reload
+
+            # Restart dashboard; ensure timer is running
+            sudo systemctl restart airquality
+            sudo systemctl enable --now airquality-poller.timer
+
+            # Update Caddyfile and reload Caddy
+            sudo cp Caddyfile /etc/caddy/Caddyfile
+            sudo systemctl reload caddy
+
+            echo "Deploy complete"
